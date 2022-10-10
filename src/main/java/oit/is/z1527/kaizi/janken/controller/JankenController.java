@@ -17,14 +17,38 @@ public class JankenController {
   /**
    * sample21というGETリクエストがあったら sample21()を呼び出し，sample21.htmlを返す
    */
-  @GetMapping("/janken1")
-  public String janken1() {
+  /*
+   * POSTを受け付ける場合は@PostMappingを利用する /sample25へのPOSTを受け付けて，FormParamで指定された変数(input
+   * name)をsample25()メソッドの引数として受け取ることができる
+   *
+   * @param name
+   *
+   * @param model
+   *
+   * @return
+   */
+  @GetMapping("/jankengu")
+  public String jankengu(ModelMap model) {
+    String user;
+    user = "Gu";
+    model.addAttribute("user", user);
     return "janken.html";
   }
 
-  @GetMapping("/sample24")
-  public String sample24() {
-    return "sample24.html";
+  @GetMapping("/jankenchoki")
+  public String jankenchoki(ModelMap model) {
+    String user;
+    user = "Choki";
+    model.addAttribute("user", user);
+    return "janken.html";
+  }
+
+  @GetMapping("/jankenpa")
+  public String jankenpa(ModelMap model) {
+    String user;
+    user = "Pa";
+    model.addAttribute("user", user);
+    return "janken.html";
   }
 
   /**
