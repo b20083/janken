@@ -8,7 +8,36 @@
 
 <body>
   <h1>Janken Game!</h1>
-  <p>Hi [[${name}]]</p>
+  <div th:if="${name}">
+    <p>Hi [[${name}]]</p>
+  </div>
+  <p>
+    <a href="/jankengu">グー</a>
+    <a href="/jankenchoki">チョキ</a>
+    <a href="/jankenpa">パー</a>
+  </p>
+
+  <div th:if="${user == 'Gu'}">
+    あなたの手 [[${user}]]
+    <p />
+    相手の手 Gu
+    <p />
+    結果 Draw!
+  </div>
+  <div th:if="${user == 'Choki'}">
+    あなたの手 [[${user}]]
+    <p />
+    相手の手 Gu
+    <p />
+    結果 CPU Win!
+  </div>
+  <div th:if="${user == 'Pa'}">
+    あなたの手 [[${user}]]
+    <p />
+    相手の手 Gu
+    <p />
+    結果 You Win!
+  </div>
 </body>
 
 </html>
