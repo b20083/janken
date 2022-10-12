@@ -109,4 +109,9 @@ public class JankenController {
     return "janken.html";
   }
 
+  @GetMapping("/janken1")
+  public String janken1() {
+    return "janken.html";
+  }
+
 }
