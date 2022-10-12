@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class JankenController {
+
+  @GetMapping("/janken")
+  public String janken() {
+    return "janken.html";
+  }
+
   /**
    * sample21というGETリクエストがあったら sample21()を呼び出し，sample21.htmlを返す
    */
@@ -102,15 +108,10 @@ public class JankenController {
    * @param model
    * @return
    */
-  @PostMapping("/janken1")
-  public String janken1(@RequestParam String name, ModelMap model) {
+  @PostMapping("/janken")
+  public String janken(@RequestParam String name, ModelMap model) {
     model.addAttribute("name", name);
 
-    return "janken.html";
-  }
-
-  @GetMapping("/janken1")
-  public String janken1() {
     return "janken.html";
   }
 
