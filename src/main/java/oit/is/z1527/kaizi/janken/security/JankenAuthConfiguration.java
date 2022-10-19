@@ -62,6 +62,11 @@ public class JankenAuthConfiguration {
         .mvcMatchers("/janken/**").authenticated();
 
     http.logout().logoutSuccessUrl("/"); // ログアウト時は "http://localhost:8080/" に戻る
+
+    // h2-consoleを使うときに必要
+    http.csrf().disable();
+    http.headers().frameOptions().disable();
+
     return http.build();
   }
 
