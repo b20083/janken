@@ -9,17 +9,29 @@
 <body>
   <div><a href="/logout">ログアウト</a></div>
   <h1>Janken Game!</h1>
-  <p>エントリー</p>
-  <div th:if="${entry}">
-    <ul>
-      <!--eachは所謂for each．この場合roomオブジェクトのusersフィールドにあるすべてのデータを一通り表示する
-        thが指定されているので[]が不要になる-->
-      <li th:each="user : ${entry.users}">[[${user}]]</li>
-    </ul>
-  </div>
   <div th:if="${name}">
     Hi [[${name}]]
   </div>
+  <h2>エントリー</h2>
+  <!--<div th:if="${entry}">
+    <ul>-->
+  <!--<eachは所謂for each．この場合roomオブジェクトのusersフィールドにあるすべてのデータを一通り表示する
+        thが指定されているので[]が不要になる-->
+  <!--<li th:each="user : ${entry.users}">[[${user}]]</li>
+    </ul>
+  </div>-->
+
+  <p th:if="${users}">
+    <!--statはステータス変数
+        https://www.ne.jp/asahi/hishidama/home/tech/java/spring/boot/thymeleaf/th_each.html
+      -->
+  <div th:each="user,stat:${users}">
+    <ul>
+      <li>[[${user.name}]]</li>
+    </ul>
+  </div>
+  </p>
+
   <p>
     <a href="/jankengu">グー</a>
     <a href="/jankenchoki">チョキ</a>
