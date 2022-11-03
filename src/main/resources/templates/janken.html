@@ -32,6 +32,20 @@
   </div>
   </p>
 
+  <h2>試合結果</h2>
+  <p th:if="${matches}">
+    <!--statはステータス変数
+          https://www.ne.jp/asahi/hishidama/home/tech/java/spring/boot/thymeleaf/th_each.html
+        -->
+  <div th:each="match,stat:${matches}">
+    id:[[${match.id}]]
+    user1:[[${match.user1}]]
+    user2:[[${match.user2}]]
+    user1の手:[[${match.user1Hand}]]
+    user2の手:[[${match.user2Hand}]]
+  </div>
+  </p>
+
   <p>
     <a href="/jankengu">グー</a>
     <a href="/jankenchoki">チョキ</a>
