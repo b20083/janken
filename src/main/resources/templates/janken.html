@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
 
 <head>
   <meta charset="utf-8">
@@ -21,17 +21,32 @@
     </ul>
   </div>-->
 
-  <p th:if="${users}">
-    <!--statはステータス変数
-        https://www.ne.jp/asahi/hishidama/home/tech/java/spring/boot/thymeleaf/th_each.html
-      -->
+  <!--statはステータス変数
+          https://www.ne.jp/asahi/hishidama/home/tech/java/spring/boot/thymeleaf/th_each.html
+        -->
+  <!--<p th:if="${users}">
+
   <div th:each="user,stat:${users}">
     <ul>
       <li>[[${user.name}]]</li>
     </ul>
   </div>
+  </p>-->
+  <li th:each="user : ${users}"><a th:href="@{/match(id=${user.id})}"> [[${user.name}]]</a></li>
+
+
+  <h2>試合結果</h2>
+  <p th:if="${matches}">
+    <!--statはステータス変数
+          https://www.ne.jp/asahi/hishidama/home/tech/java/spring/boot/thymeleaf/th_each.html
+        -->
+  <div th:each="match,stat:${matches}">
+    <p>id:[[${match.id}]] user1:[[${match.user1}]] user2:[[${match.user2}]] user1の手:[[${match.user1Hand}]]
+      user2の手:[[${match.user2Hand}]]</p>
+  </div>
   </p>
 
+  <!--
   <p>
     <a href="/jankengu">グー</a>
     <a href="/jankenchoki">チョキ</a>
@@ -58,7 +73,7 @@
     相手の手 Gu
     <p />
     結果 You Win!
-  </div>
+  </div>-->
 </body>
 
 </html>

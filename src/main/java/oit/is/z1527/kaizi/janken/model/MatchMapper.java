@@ -8,12 +8,9 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
-public interface UserMapper {
+public interface MatchMapper {
 
-  @Select("SELECT id, name from users")
-  ArrayList<User> selectAllUser();
-
-  @Select("SELECT id, name from users where id =#{id}")
-  ArrayList<User> selectUser(int id);
+  @Select("SELECT * from matches")
+  ArrayList<Match> selectAllMatch();
 
 }

@@ -5,14 +5,19 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import oit.is.z1527.kaizi.janken.model.Entry;
+import oit.is.z1527.kaizi.janken.model.Janken;
 import oit.is.z1527.kaizi.janken.model.User;
 import oit.is.z1527.kaizi.janken.model.UserMapper;
+import oit.is.z1527.kaizi.janken.model.Match;
+import oit.is.z1527.kaizi.janken.model.MatchMapper;
 
 /**
  * Sample21Controller
@@ -28,15 +33,29 @@ public class JankenController {
   @Autowired
   UserMapper UserMapper;
 
+  @Autowired
+  MatchMapper MatchMapper;
+
   @GetMapping("/janken")
   public String janken(Principal prin, ModelMap model) {
     String loginUser = prin.getName();
     this.entry.addUser(loginUser);
     ArrayList<User> users = UserMapper.selectAllUser();
+    ArrayList<Match> matches = MatchMapper.selectAllMatch();
     model.addAttribute("users", users);
+    model.addAttribute("matches", matches);
     model.addAttribute("entry", this.entry);
     model.addAttribute("name", loginUser);
     return "janken.html";
+  }
+
+  @GetMapping("/match")
+  public String match(@RequestParam Integer id, Principal prin, ModelMap model) {
+    ArrayList<User> aite = UserMapper.selectUser(id);
+    String name = prin.getName();
+    model.addAttribute("aite", aite);
+    model.addAttribute("name", name);
+    return "match.html";
   }
 
   @PostMapping("step5")
@@ -68,29 +87,54 @@ public class JankenController {
    *
    * @return
    */
-  @GetMapping("/jankengu")
-  public String jankengu(ModelMap model) {
-    String user;
-    user = "Gu";
-    model.addAttribute("user", user);
-    return "janken.html";
-  }
-
-  @GetMapping("/jankenchoki")
-  public String jankenchoki(ModelMap model) {
-    String user;
-    user = "Choki";
-    model.addAttribute("user", user);
-    return "janken.html";
-  }
-
-  @GetMapping("/jankenpa")
-  public String jankenpa(ModelMap model) {
-    String user;
-    user = "Pa";
-    model.addAttribute("user", user);
-    return "janken.html";
-  }
+  /*
+   * @GetMapping("/janken")
+   * public String janken(@RequestParam Integer tasu1, @RequestParam Integer
+   * tasu2, ModelMap model) {
+   * int tasuResult = tasu1 + tasu2;
+   * model.addAttribute("tasuResult2", tasuResult);
+   * return "janken.html";
+   * }
+   */
+  /*
+   * @GetMapping("/janken")
+   * public String janken(@RequestParam String te, Principal prin, ModelMap model)
+   * {
+   * String loginUser = prin.getName();
+   * this.entry.addUser(loginUser);
+   * String userh = null;
+   * if (te.equals("Gu")) {
+   * userh = "Gu";
+   * } else if (te.equals("Choki")) {
+   * userh = "Choki";
+   * } else if (te.equals("Pa")) {
+   * userh = "Pa";
+   * }
+   * ArrayList<User> users = UserMapper.selectAllUser();
+   * model.addAttribute("user", userh);
+   * model.addAttribute("users", users);
+   * model.addAttribute("entry", this.entry);
+   * model.addAttribute("name", loginUser);
+   * return "janken.html";
+   * }
+   */
+  /*
+   * @GetMapping("/janken?te=choki")
+   * public String jankenchoki(ModelMap model) {
+   * String user;
+   * user = "Choki";
+   * model.addAttribute("user", user);
+   * return "janken.html";
+   * }
+   *
+   * @GetMapping("/janken?te=pa")
+   * public String jankenpa(ModelMap model) {
+   * String user;
+   * user = "Pa";
+   * model.addAttribute("user", user);
+   * return "janken.html";
+   * }
+   */
 
   /**
    * パスパラメータ2つをGETで受け付ける 1つ目の変数をparam1という名前で，2つ目の変数をparam2という名前で受け取る
