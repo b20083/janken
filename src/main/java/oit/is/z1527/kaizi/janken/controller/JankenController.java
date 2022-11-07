@@ -56,18 +56,19 @@ public class JankenController {
   }
 
   @GetMapping("/fight")
-  public String fight(@RequestParam Integer id, @RequestParam String uhand, Principal prin, ModelMap model) {
-    String hand = null;
-    if (uhand.equals("gu")) {
-      hand = "Gu";
-      // model.addAttribute("hand", hand);
-    } else if (uhand.equals("choki")) {
-      hand = "Choki";
-      // model.addAttribute("hand", hand);
-    } else if (uhand.equals("pa")) {
-      hand = "Pa";
-      // model.addAttribute("hand", hand);
+  public String fight(@RequestParam Integer id, @RequestParam String uhand, ModelMap model) {
+    String hand = uhand;
+    if (uhand.equals("Gu")) {
+    hand = "Gu";
+    // model.addAttribute("hand", hand);
+    } else if (uhand.equals("Choki")) {
+    hand = "Choki";
+    // model.addAttribute("hand", hand);
+    } else if (uhand.equals("Pa")) {
+    hand = "Pa";
+    // model.addAttribute("hand", hand);
     }
+
     model.addAttribute("hand", hand);
     return "match.html";
   }
