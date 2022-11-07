@@ -20,14 +20,14 @@
   <!--<li th:each="user : ${entry.users}">[[${user}]]</li>
     </ul>
   </div>-->
-
-  <p th:if="${users}">
-    <!--statはステータス変数
+  <!--statはステータス変数
         https://www.ne.jp/asahi/hishidama/home/tech/java/spring/boot/thymeleaf/th_each.html
       -->
+  <p th:if="${users}">
+
   <div th:each="user,stat:${users}">
     <ul>
-      <li>[[${user.name}]]</li>
+      <li><a th:href="@{/match(id=${user.id})}">[[${user.name}]]</a></li>
     </ul>
   </div>
   </p>
