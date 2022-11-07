@@ -10,9 +10,9 @@
   <h1>Match</h1>
   <h2>[[${name}]] V.S. [[${aite.name}]]</h2>
   <p>
-    <a th:href="@{/fight(id=${aite.id}, uhand=gu)}">グー</a>
-    <a th:href="@{/fight(id=${aite.id}, uhand=choki)}">チョキ</a>
-    <a th:href="@{/fight(id=${aite.id}, uhand=pa)}">パー</a>
+    <a href="/fight(id=${aite.id}, uhand=Gu)">グー</a>
+    <a href="/fight(id=${aite.id}, uhand=Choki)">チョキ</a>
+    <a href="/fight(id=${aite.id}, uhand=Pa)">パー</a>
   </p>
 
   <div th:if="${hand == 'Gu'}">
