@@ -45,6 +45,15 @@ public class JankenController {
     return "janken.html";
   }
 
+  @GetMapping("/match")
+  public String match(@RequestParam Integer id, Principal prin, ModelMap model) {
+    String loginUser = prin.getName();
+    User aite = UserMapper.selectById(id);
+    model.addAttribute("name", loginUser);
+    model.addAttribute("aite", aite);
+    return "match.html";
+  }
+
   @PostMapping("step5")
   public String sample45(@RequestParam String name, ModelMap model) {
     ArrayList<User> users = UserMapper.selectAllUser();
