@@ -9,6 +9,35 @@
 <body>
   <h1>Match</h1>
   <h2>[[${name}]] V.S. [[${aite.name}]]</h2>
+  <p>
+    <a th:href="@{/fight(id=${aite.id}, uhand=gu)}">グー</a>
+    <a th:href="@{/fight(id=${aite.id}, uhand=choki)}">チョキ</a>
+    <a th:href="@{/fight(id=${aite.id}, uhand=pa)}">パー</a>
+  </p>
+
+  <div th:if="${hand == 'Gu'}">
+    あなたの手 [[${hand}]]
+    <p />
+    相手の手 Gu
+    <p />
+    結果 Draw!
+  </div>
+  <div th:if="${hand == 'Choki'}">
+    あなたの手 [[${hand}]]
+    <p />
+    相手の手 Gu
+    <p />
+    結果 [[${aite.name}]] Win!
+  </div>
+  <div th:if="${hand == 'Pa'}">
+    あなたの手 [[${hand}]]
+    <p />
+    相手の手 Gu
+    <p />
+    結果 You Win!
+  </div>
+
+  <a href="/janken">もどる</a>
 </body>
 
 </html>
